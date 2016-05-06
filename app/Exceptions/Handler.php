@@ -46,6 +46,25 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
+        if ($request->ajax() || $request->wantsJson()) {
+            $response = [
+                'errors' => 'Sorry, something went wrong.'
+            ];
+            if (config('app.debug'))
+            {
+                // Add the exception class name, message and stack trace to response
+                $response['exception'] = get_class($e); // Reflection might be better here
+                $response['message'] = $e->getMessage();
+                $response['trace'] = $e->getTrace();
+            }
+            $status = 400;
+            if ($this->isHttpException($e))
+            {
+                $status = $e->getStatusCode();
+            }
+            return response()->json($response, $status);
+        }
+
         return parent::render($request, $e);
     }
 }

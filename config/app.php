@@ -202,6 +202,7 @@ return [
          * Application
          */
         'Image' => Intervention\Image\Facades\Image::class,
+        'Uuid'  => Webpatser\Uuid\Uuid::class,
 
     ],
 
