@@ -34,19 +34,12 @@ module.exports = {
         loose:['es6.modules']
       },
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.scss$/, loader: 'style!css!sass' },
       { test: /\.less$/, loader: 'style!css!less' },
-      { test: /\.styl$/, loader: 'style!css!autoprefixer!stylus' },
 
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
 
-      { test: /.*\.(gif|png|jpe?g|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
-        ]
-      },
+      { test: /.*\.(gif|png|jpe?g|svg)$/i, loader:'file-loader' },
       {
         test: /\.json$/,
         loader: 'json-loader'
