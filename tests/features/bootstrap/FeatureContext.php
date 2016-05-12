@@ -2,7 +2,6 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\MinkExtension\Context\MinkContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
@@ -225,16 +224,25 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     {
         $this->resource = $resource;
 
+        $server = [
+            'CONTENT_TYPE' => 'application/json',
+            'Accept' => 'application/json',
+            'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+        ];
+
         try {
             switch ($httpMethod) {
                 case 'PUT':
                 case 'POST':
+                    $data = json_decode($this->requestPayload, true);
+                    $content = json_encode($data);
+                    $server['CONTENT_LENGTH'] = mb_strlen($content, '8bit');
                     $this->response = $this->
-                        call( $httpMethod, $resource, json_decode($this->requestPayload, true) );
+                        call( $httpMethod, $resource, [], [], [], $server, $content );
                     break;
                 default:
                     $this->response = $this->
-                        call( $httpMethod, $resource, [],[],[], ['content-type'=>'application/json', 'X-Requested-With'=>'XMLHttpRequest'] );
+                        call( $httpMethod, $resource, [], [], [], $server );
                     break;
             }
         } catch (Exception $e) {
@@ -293,9 +301,28 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     }
 
     /**
+     * @Given /^la propiedad "([^"]*)" no existe$/
+     */
+    public function laPropiedadNoExiste($property)
+    {
+        $payload = $this->getScopePayload();
+        $message = sprintf(
+            'Asserting the [%s] property exists in the scope [%s]: %s',
+            $property,
+            $this->scope,
+            json_encode($payload)
+        );
+        if (is_object($payload)) {
+            $this->assertFalse(array_key_exists($property, get_object_vars($payload)), $message);
+        } else {
+            $this->assertFalse(array_key_exists($property, $payload), $message);
+        }
+    }
+
+    /**
      * @Given /^la propiedad "([^"]*)" es de tipo ([^"]*)$/
      */
-    public function laPropiedadEsDeTipo2($property, $type)
+    public function laPropiedadEsDeTipo($property, $type)
     {
         $payload = $this->getScopePayload();
         $actualValue = $this->arrayGet($payload, $property);

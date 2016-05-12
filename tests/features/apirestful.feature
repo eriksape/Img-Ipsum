@@ -13,13 +13,13 @@ Característica: Rutas de API Básicas
     """
       {
         "name":"autor",
-        "site":"sitio"
+        "site":"http://sitio.site"
       }
     """
     Cuando hago una peticion POST a "/author"
     Entonces obtengo una respuesta 201 del servidor
     Y la propiedad "name" es igual a "autor"
-    Y la propiedad "site" es igual a "sitio"
+    Y la propiedad "site" es igual a "http://sitio.site"
     Y la propiedad "id" es de tipo numerico
 
     Escenario: PUT "/author/2"
@@ -39,3 +39,30 @@ Característica: Rutas de API Básicas
       Escenario: DELETE "/author/2"
         Cuando hago una peticion DELETE a "/author/2"
         Entonces obtengo una respuesta 204 del servidor
+
+      Escenario: POST "/author" sin valores
+        Dados los siguientes valores:
+        """
+          {
+          }
+        """
+        Cuando hago una peticion POST a "/author"
+        Entonces obtengo una respuesta 422 del servidor
+        Y la propiedad "name" existe
+        Y la propiedad "site" existe
+        Y la propiedad "name" es de tipo array
+        Y la propiedad "site" es de tipo array
+
+
+      Escenario: POST "/author" site erroneo
+        Dados los siguientes valores:
+        """
+          {
+            "name":"author-test",
+            "site":"site"
+          }
+        """
+        Cuando hago una peticion POST a "/author"
+        Entonces obtengo una respuesta 422 del servidor
+        Y la propiedad "name" no existe
+        Y la propiedad "site" existe
