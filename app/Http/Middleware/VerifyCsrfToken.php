@@ -26,9 +26,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected function tokensMatch($request)
     {
         // Don't validate CSRF when testing.
-        if(env('APP_ENV') === 'testing') {
-            return true;
-        }
+        if(app()->environment('testing')) return true;
 
         return parent::tokensMatch($request);
     }
