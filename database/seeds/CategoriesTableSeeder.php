@@ -15,5 +15,14 @@ class CategoriesTableSeeder extends Seeder
             'name'    => 'undefined',
             'counter' => 0
         ] );
+
+        if(app()->environment('acceptance')){
+
+            Category::create( [
+                'name'  => 'acceptance',
+                'counter'  => 0
+            ] );
+
+        }
     }
 }

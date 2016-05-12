@@ -12,8 +12,17 @@ class AuthorsTableSeeder extends Seeder
     public function run()
     {
         Author::create( [
-            'author'      => 'undefined',
-            'author_site' => 'undefined'
+            'name'  => 'undefined',
+            'site'  => 'undefined'
         ] );
+
+        if(app()->environment('acceptance')){
+
+            Author::create( [
+                'name'  => 'acceptance',
+                'site'  => 'acceptance.com'
+            ] );
+
+        }
     }
 }
