@@ -1,6 +1,7 @@
 default:
-  extensions:
-    Laracasts\Behat\ServiceContainer\BehatExtension: ~
-    Behat\MinkExtension\ServiceContainer\MinkExtension:
-      default_session: laravel
-      laravel: ~
+  autoload:
+    '': %paths.base%/tests/features/bootstrap
+  suites:
+    default:
+      paths:
+        - %paths.base%/tests/features
