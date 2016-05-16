@@ -22,47 +22,46 @@ Característica: Rutas de API Básicas
     Y la propiedad "site" es igual a "http://sitio.site"
     Y la propiedad "id" es de tipo numerico
 
-    Escenario: PUT "/author/2"
-      Dados los siguientes valores:
-      """
-        {
-          "name":"autor:acceptance",
-          "site":"http://acceptance.com"
-        }
-      """
-      Cuando hago una peticion PUT a "/author/2"
-      Entonces obtengo una respuesta 200 del servidor
-      Y la propiedad "name" es igual a "autor:acceptance"
-      Y la propiedad "site" es igual a "http://acceptance.com"
-      Y la propiedad "id" es igual a "2"
+  Escenario: PUT "/author/2"
+    Dados los siguientes valores:
+    """
+      {
+        "name":"autor:acceptance",
+        "site":"http://acceptance.com"
+      }
+    """
+    Cuando hago una peticion PUT a "/author/2"
+    Entonces obtengo una respuesta 200 del servidor
+    Y la propiedad "name" es igual a "autor:acceptance"
+    Y la propiedad "site" es igual a "http://acceptance.com"
+    Y la propiedad "id" es igual a "2"
 
-      Escenario: DELETE "/author/2"
-        Cuando hago una peticion DELETE a "/author/2"
-        Entonces obtengo una respuesta 204 del servidor
+  Escenario: DELETE "/author/2"
+    Cuando hago una peticion DELETE a "/author/2"
+    Entonces obtengo una respuesta 204 del servidor
 
-      Escenario: POST "/author" sin valores
-        Dados los siguientes valores:
-        """
-          {
-          }
-        """
-        Cuando hago una peticion POST a "/author"
-        Entonces obtengo una respuesta 422 del servidor
-        Y la propiedad "name" existe
-        Y la propiedad "site" existe
-        Y la propiedad "name" es de tipo array
-        Y la propiedad "site" es de tipo array
+  Escenario: POST "/author" sin valores
+    Dados los siguientes valores:
+    """
+      {
+      }
+    """
+    Cuando hago una peticion POST a "/author"
+    Entonces obtengo una respuesta 422 del servidor
+    Y la propiedad "name" existe
+    Y la propiedad "site" existe
+    Y la propiedad "name" es de tipo array
+    Y la propiedad "site" es de tipo array
 
-
-      Escenario: POST "/author" site erroneo
-        Dados los siguientes valores:
-        """
-          {
-            "name":"author-test",
-            "site":"site"
-          }
-        """
-        Cuando hago una peticion POST a "/author"
-        Entonces obtengo una respuesta 422 del servidor
-        Y la propiedad "name" no existe
-        Y la propiedad "site" existe
+  Escenario: POST "/author" site erroneo
+    Dados los siguientes valores:
+    """
+      {
+        "name":"author-test",
+        "site":"site"
+      }
+    """
+    Cuando hago una peticion POST a "/author"
+    Entonces obtengo una respuesta 422 del servidor
+    Y la propiedad "name" no existe
+    Y la propiedad "site" existe
