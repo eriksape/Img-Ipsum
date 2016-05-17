@@ -65,3 +65,46 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 422 del servidor
     Y la propiedad "name" no existe
     Y la propiedad "site" existe
+
+  Escenario: GET "/category"
+    Cuando hago una peticion GET a "/category"
+    Entonces obtengo una respuesta 200 del servidor
+
+  Escenario: POST "/category"
+    Dados los siguientes valores:
+    """
+      {
+        "name":"autor"
+      }
+    """
+    Cuando hago una peticion POST a "/category"
+    Entonces obtengo una respuesta 201 del servidor
+    Y la propiedad "name" es igual a "autor"
+    Y la propiedad "id" es de tipo numerico
+
+  Escenario: PUT "/category/2"
+    Dados los siguientes valores:
+    """
+      {
+        "name":"autor:acceptance"
+      }
+    """
+    Cuando hago una peticion PUT a "/category/2"
+    Entonces obtengo una respuesta 200 del servidor
+    Y la propiedad "name" es igual a "autor:acceptance"
+    Y la propiedad "id" es igual a "2"
+
+  Escenario: DELETE "/category/2"
+    Cuando hago una peticion DELETE a "/category/2"
+    Entonces obtengo una respuesta 204 del servidor
+
+  Escenario: POST "/category" sin valores
+    Dados los siguientes valores:
+    """
+      {
+      }
+    """
+    Cuando hago una peticion POST a "/category"
+    Entonces obtengo una respuesta 422 del servidor
+    Y la propiedad "name" existe
+    Y la propiedad "name" es de tipo array
