@@ -108,3 +108,18 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 422 del servidor
     Y la propiedad "name" existe
     Y la propiedad "name" es de tipo array
+
+    Escenario: POST "/image"
+      Dados los siguientes archivos:
+      """
+        {
+          "image":"__DIRECTORY__/example.jpg"
+        }
+      """
+      Y los siguientes valores:
+      """
+        {
+        }
+      """
+      Cuando hago una peticion POST a "/image"
+      Entonces obtengo una respuesta 201 del servidor

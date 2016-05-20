@@ -4,8 +4,11 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Hook\Scope\AfterStepScope;
 
 use Illuminate\Foundation\Testing\TestCase;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
 /**
@@ -27,6 +30,11 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
      * The request payload
      */
      protected $requestPayload;
+
+     /**
+      * The request files
+      */
+      protected $requestFiles = [];
 
      /**
       * The Guzzle HTTP Response.
@@ -106,6 +114,18 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     public static function rollback()
     {
         DB::rollback();
+    }
+
+    /**
+     * Verify every step
+     *
+     * @AfterStep
+    */
+    public function dumpInfoAfterFailedStep(AfterStepScope $scope)
+    {
+        if(!$scope->getTestResult()->isPassed()){
+            //echo "xxxxxxxxxxxNOxxxxxxxxxxx";
+        }
     }
 
     /**
@@ -218,6 +238,23 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     }
 
     /**
+     * @Given los siguientes archivos:
+     */
+
+    public function losSiguientesArchivos(PyStringNode $requestFiles)
+    {
+        $files = json_decode(str_replace("__DIRECTORY__/", storage_path('tests/'), $requestFiles), true);
+        $fileNames = json_decode(str_replace("__DIRECTORY__/", '', $requestFiles), true);
+
+        foreach ($files as $key => $file) {
+            $files[$key] = $file = new UploadedFile( $file, $fileNames[$key] );
+        }
+
+        $this->requestFiles = $files;
+
+    }
+
+    /**
      * @When /^hago una peticion ([A-Z]+) a "([^"]*)"$/
      */
     public function HagoUnaPeticionA($httpMethod, $resource)
@@ -236,9 +273,10 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
                 case 'POST':
                     $data = json_decode($this->requestPayload, true);
                     $content = json_encode($data);
+                    $files = $this->requestFiles;
                     $server['CONTENT_LENGTH'] = mb_strlen($content, '8bit');
                     $this->response = $this->
-                        call( $httpMethod, $resource, [], [], [], $server, $content );
+                        call( $httpMethod, $resource, [], [], $files, $server, $content );
                     break;
                 default:
                     $this->response = $this->
@@ -246,8 +284,9 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
                     break;
             }
         } catch (Exception $e) {
-            if ($e->getResponse() === null) throw $e;
-            $this->response = $e->getResponse();
+            echo $e;
+            // if ($e->getResponse() === null) throw $e;
+            // $this->response = $e->getResponse();
         }
 
     }
