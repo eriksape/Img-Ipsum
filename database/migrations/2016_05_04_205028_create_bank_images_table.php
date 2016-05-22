@@ -14,9 +14,8 @@ class CreateBankImagesTable extends Migration
     {
         Schema::create('bank_images', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('filename',250)->uniq();
+            $table->string('path',250)->uniq();
             $table->string('origin_url',250)->uniq();
-            $table->string('store',300)->uniq();
             $table->integer('category_id')->unsigned();
             $table->integer('author_id')->unsigned();
             $table->timestamps();

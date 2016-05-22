@@ -109,17 +109,25 @@ Característica: Rutas de API Básicas
     Y la propiedad "name" existe
     Y la propiedad "name" es de tipo array
 
-    Escenario: POST "/image"
-      Dados los siguientes archivos:
-      """
-        {
-          "image":"__DIRECTORY__/example.jpg"
-        }
-      """
-      Y los siguientes valores:
-      """
-        {
-        }
-      """
-      Cuando hago una peticion POST a "/image"
-      Entonces obtengo una respuesta 201 del servidor
+  Escenario: POST "/image"
+    Dados los siguientes valores:
+    """
+      {
+        "origin_url" : "http://site.com",
+        "category_id" : 2,
+        "author_id" : 2
+      }
+    """
+    Y los siguientes archivos:
+    """
+      {
+        "image":"__DIRECTORY__/example.jpg"
+      }
+    """
+    Cuando hago una peticion POST a "/image"
+    Entonces obtengo una respuesta 201 del servidor
+    y la propiedad "id" existe
+    y la propuedad "id" es igual a 1
+    y la propiedad "origin_url" es igual a "http://site.com"
+    Y la propiedad "category_id" es igual a 2
+    Y la propiedad "author_id" es igual a 2
