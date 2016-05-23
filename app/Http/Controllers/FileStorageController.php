@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Models\FileStorage;
 use Uuid;
 use Storage;
@@ -26,7 +24,7 @@ class FileStorageController extends Controller
     {
         $fileObject = (object) [
             'size' => Conversions::human_filesize($file->getClientSize()),
-            'filename' => Uuid::generate(4).'.'.$file->getExtension(),
+            'filename' => Uuid::generate(4).'.'.$file->guessExtension(),
         ];
 
         Storage::put($fileObject->filename, File::get($file));
@@ -75,23 +73,17 @@ class FileStorageController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Remove the specified resource from storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function destroy($id)
     {
         $fileStorage = $this->show($id);
 
-        $fileStorage->fill($request->all());
+        $fileStorage->delete();
 
-        if (!$fileStorage->save()) {
-            abort(500, 'file storage was not updated');
-        }
-
-        return Author::find($id);
+        return null;
     }
 }

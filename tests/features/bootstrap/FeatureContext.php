@@ -5,11 +5,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Hook\Scope\AfterStepScope;
-
 use Illuminate\Foundation\Testing\TestCase;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 
 /**
  * Defines application features from the specific context.
@@ -29,36 +26,34 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     /**
      * The request payload
      */
-     protected $requestPayload;
+    protected $requestPayload;
 
-     /**
-      * The request files
-      */
-      protected $requestFiles = [];
+    /**
+     * The request files
+     */
+    protected $requestFiles = [];
 
-     /**
-      * The Guzzle HTTP Response.
-      */
-     protected $response;
+    /**
+     * The Guzzle HTTP Response.
+     */
+    protected $response;
 
-     /**
-      * The decoded response object.
-      */
-     protected $responsePayload;
+    /**
+     * The decoded response object.
+     */
+    protected $responsePayload;
 
-     /**
-      * The current scope within the response payload
-      * which conditions are asserted against.
-      */
-     protected $scope;
-
+    /**
+     * The current scope within the response payload
+     * which conditions are asserted against.
+     */
+    protected $scope;
 
     /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
      */
-
     public function __construct()
     {
         parent::setUp();
@@ -123,7 +118,7 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     */
     public function dumpInfoAfterFailedStep(AfterStepScope $scope)
     {
-        if(!$scope->getTestResult()->isPassed()){
+        if (!$scope->getTestResult()->isPassed()) {
             //echo "xxxxxxxxxxxNOxxxxxxxxxxx";
         }
     }
@@ -243,15 +238,18 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
 
     public function losSiguientesArchivos(PyStringNode $requestFiles)
     {
+        $this->requestFiles = [];
+
         $files = json_decode(str_replace("__DIRECTORY__/", storage_path('tests/'), $requestFiles), true);
         $fileNames = json_decode(str_replace("__DIRECTORY__/", '', $requestFiles), true);
 
         foreach ($files as $key => $file) {
-            $files[$key] = $file = new UploadedFile( $file, $fileNames[$key] );
+            $files[$key] = $file = new UploadedFile($file, $fileNames[$key]);
         }
 
-        $this->requestFiles = $files;
+        print_r($files);
 
+        $this->requestFiles = $files;
     }
 
     /**
@@ -276,11 +274,11 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
                     $files = $this->requestFiles;
                     $server['CONTENT_LENGTH'] = mb_strlen($content, '8bit');
                     $this->response = $this->
-                        call( $httpMethod, $resource, [], [], $files, $server, $content );
+                        call($httpMethod, $resource, [], [], $files, $server, $content);
                     break;
                 default:
                     $this->response = $this->
-                        call( $httpMethod, $resource, [], [], [], $server );
+                        call($httpMethod, $resource, [], [], [], $server);
                     break;
             }
         } catch (Exception $e) {
@@ -288,7 +286,6 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
             // if ($e->getResponse() === null) throw $e;
             // $this->response = $e->getResponse();
         }
-
     }
 
     /**
@@ -392,5 +389,4 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
 
         }
     }
-
 }
