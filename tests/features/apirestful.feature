@@ -122,3 +122,20 @@ Característica: Rutas de API Básicas
     Y la propiedad "id" es igual a "1"
     Y la propiedad "size" existe
     Y la propiedad "filename" existe
+
+    Escenario: PUT "/files/1"
+      Dados los siguientes archivos:
+      """
+        {
+          "file":"__DIRECTORY__/example2.jpg"
+        }
+      """
+      Cuando hago una peticion PUT a "/files/1"
+      Entonces obtengo una respuesta 201 del servidor
+      Y la propiedad "id" existe
+      Y la propiedad "id" es igual a "1"
+      Y la propiedad "size" existe
+      Y la propiedad "filename" existe
+#    y la propiedad "origin_url" es igual a "http://site.com"
+#    Y la propiedad "category_id" es igual a 2
+#    Y la propiedad "author_id" es igual a 2

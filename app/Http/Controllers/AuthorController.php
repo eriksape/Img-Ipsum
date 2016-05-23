@@ -31,7 +31,9 @@ class AuthorController extends Controller
     {
         $author = new Author($request->all());
 
-        if(!$author->save()) abort(500, 'author was not saved');
+        if (!$author->save()) {
+            abort(500, 'author was not saved');
+        }
 
         return $author;
     }
@@ -46,7 +48,9 @@ class AuthorController extends Controller
     {
         $author = Author::find($id);
 
-        if(!$author) abort(404, 'not author found');
+        if (!$author) {
+            abort(404, 'not author found');
+        }
 
         return $author;
     }
@@ -64,10 +68,11 @@ class AuthorController extends Controller
 
         $author->fill($request->all());
 
-        if(!$author->save()) abort(500, 'author was not updated');
+        if (!$author->save()) {
+            abort(500, 'author was not updated');
+        }
 
         return Author::find($id);
-
     }
 
     /**

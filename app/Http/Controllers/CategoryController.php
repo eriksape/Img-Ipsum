@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Category;
+
 class CategoryController extends Controller
 {
     /**
@@ -31,7 +32,9 @@ class CategoryController extends Controller
     {
         $category = new Category($request->all());
 
-        if(!$category->save()) abort(500, 'category was not saved');
+        if (!$category->save()) {
+            abort(500, 'category was not saved');
+        }
 
         return $category;
     }
@@ -46,7 +49,9 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        if(!$category) abort(404, 'not category found');
+        if (!$category) {
+            abort(404, 'not category found');
+        }
 
         return $category;
     }
@@ -64,7 +69,9 @@ class CategoryController extends Controller
 
         $category->fill($request->all());
 
-        if(!$category->save()) abort(500, 'category was not updated');
+        if (!$category->save()) {
+            abort(500, 'category was not updated');
+        }
 
         return Category::find($id);
     }

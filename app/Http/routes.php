@@ -20,7 +20,7 @@ Route::get('/generate', 'CustomImageCacheController@generate');
 
 Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
 Route::group(['middleware' => 'json'], function () {
-    resource('author', 'AuthorController', ['except'=>['create','show','edit']]);
-    resource('category', 'CategoryController', ['except'=>['create','show','edit']]);
-    resource('files', 'FileStorageController', ['only'=>'store']);
+    resource('author', 'AuthorController', ['except'=>['create', 'show', 'edit']]);
+    resource('category', 'CategoryController', ['except'=>['create', 'show', 'edit']]);
+    resource('files', 'FileStorageController', ['only'=>['store', 'update', 'delete']]);
 });
