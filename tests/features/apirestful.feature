@@ -9,7 +9,7 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 200 del servidor
 
   Escenario: POST "/author"
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
         "name":"autor",
@@ -23,7 +23,7 @@ Característica: Rutas de API Básicas
     Y la propiedad "id" es de tipo numerico
 
   Escenario: PUT "/author/2"
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
         "name":"autor:acceptance",
@@ -41,7 +41,7 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 204 del servidor
 
   Escenario: POST "/author" sin valores
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
       }
@@ -54,7 +54,7 @@ Característica: Rutas de API Básicas
     Y la propiedad "site" es de tipo array
 
   Escenario: POST "/author" site erroneo
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
         "name":"author-test",
@@ -71,7 +71,7 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 200 del servidor
 
   Escenario: POST "/category"
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
         "name":"autor"
@@ -83,7 +83,7 @@ Característica: Rutas de API Básicas
     Y la propiedad "id" es de tipo numerico
 
   Escenario: PUT "/category/2"
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
         "name":"autor:acceptance"
@@ -99,7 +99,7 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 204 del servidor
 
   Escenario: POST "/category" sin valores
-    Dados los siguientes valores:
+    Dado que tengo los siguientes valores:
     """
       {
       }
@@ -110,7 +110,7 @@ Característica: Rutas de API Básicas
     Y la propiedad "name" es de tipo array
 
   Escenario: POST y DELETE "/files"
-    Dados los siguientes archivos:
+    Dado que tengo los siguientes archivos:
     """
       {
         "file":"__DIRECTORY__/example.jpg"
@@ -125,6 +125,53 @@ Característica: Rutas de API Básicas
     Cuando hago una peticion DELETE a "/files/1"
     Entonces obtengo una respuesta 204 del servidor
 
-#    y la propiedad "origin_url" es igual a "http://site.com"
-#    Y la propiedad "category_id" es igual a 2
-#    Y la propiedad "author_id" es igual a 2
+  Escenario: Subiendo Imagenes
+    Dado que tengo los siguientes archivos:
+    """
+      {
+        "file":"__DIRECTORY__/example2.jpg"
+      }
+    """
+    Cuando hago una peticion POST a "/files"
+    Entonces obtengo una respuesta 201 del servidor
+    Y la propiedad "id" existe
+    Y la propiedad "id" es igual a "1"
+    Y la propiedad "size" existe
+    Y la propiedad "filename" existe
+    Dado que reinicio los valores
+    Y que tengo los siguientes valores:
+    """
+      {
+        "origin_url":"http://google.com",
+        "category_id":1,
+        "author_id":1,
+        "file_storage_id":1
+      }
+    """
+    Cuando hago una peticion POST a "/bank"
+    Entonces obtengo una respuesta 201 del servidor
+    Y la propiedad "id" existe
+    Y la propiedad "id" es igual a "1"
+    Y la propiedad "origin_url" es igual a "http://google.com"
+    Y la propiedad "category_id" es igual a "1"
+    Y la propiedad "author_id" es igual a "1"
+    Y la propiedad "file_storage_id" es igual a "1"
+    Dado que tengo los siguientes valores:
+    """
+      {
+        "origin_url":"http://facebook.com",
+        "category_id":2,
+        "author_id":2,
+        "file_storage_id":1
+      }
+    """
+    Cuando hago una peticion PUT a "/bank"
+    Entonces obtengo una respuesta 200 del servidor
+    Y la propiedad "id" existe
+    Y la propiedad "id" es igual a "1"
+    Y la propiedad "origin_url" es igual a "http://google.com"
+    Y la propiedad "category_id" es igual a "1"
+    Y la propiedad "author_id" es igual a "1"
+    Y la propiedad "file_storage_id" es igual a "1"
+    Cuando hago una peticion DELETE a "/bank/1"
+    Entonces obtengo una respuesta 204 del servidor

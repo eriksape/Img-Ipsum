@@ -223,20 +223,29 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
         return $this->responsePayload;
     }
 
+    /**
+     * @Given que reinicio los valores
+     */
+    public function queReinicioLosValores()
+    {
+        $this->requestPayload   = [];
+        $this->requestFiles     = [];
+    }
+
 
     /**
-     * @Given los siguientes valores:
+     * @Given que tengo los siguientes valores:
      */
-    public function losSiguientesValores(PyStringNode $requestPayload)
+    public function queTengoLosSiguientesValores(PyStringNode $requestPayload)
     {
         $this->requestPayload = $requestPayload;
     }
 
     /**
-     * @Given los siguientes archivos:
+     * @Given que tengo los siguientes archivos:
      */
 
-    public function losSiguientesArchivos(PyStringNode $requestFiles)
+    public function queTengoLosSiguientesArchivos(PyStringNode $requestFiles)
     {
         $this->requestFiles = [];
 
@@ -246,8 +255,6 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
         foreach ($files as $key => $file) {
             $files[$key] = $file = new UploadedFile($file, $fileNames[$key]);
         }
-
-        print_r($files);
 
         $this->requestFiles = $files;
     }

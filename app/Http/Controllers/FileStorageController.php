@@ -24,7 +24,7 @@ class FileStorageController extends Controller
     {
         $fileObject = (object) [
             'size' => Conversions::human_filesize($file->getClientSize()),
-            'filename' => Uuid::generate(4).'.'.$file->guessExtension(),
+            'filename' => Uuid::generate(4).'.'.$file->getClientOriginalExtension(),
         ];
 
         Storage::put($fileObject->filename, File::get($file));
