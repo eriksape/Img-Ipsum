@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use App\Models\BankImage;
+use App\Models\ImageBank;
 use Uuid;
 
-class BankImageController extends Controller
+class ImageBankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +31,7 @@ class BankImageController extends Controller
         //return [$request->hasFile('hola')];
 
         $filename = Uuid::generate(4).'.'.$request->file('image')->getExtension();
-        \Storage::put( $filename, $request->file('image') );
+        \Storage::put($filename, $request->file('image'));
 
         $bankImage = new BankImage();
         $bankImage->filename      = $filename;

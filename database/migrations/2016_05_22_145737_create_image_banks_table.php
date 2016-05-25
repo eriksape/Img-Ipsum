@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBankImagesTable extends Migration
+class CreateImageBanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBankImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bank_images', function (Blueprint $table) {
+        Schema::create('image_banks', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('origin_url')->uniq();
             $table->integer('category_id')->unsigned();
@@ -33,6 +33,6 @@ class CreateBankImagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bank_images');
+        Schema::drop('image_banks');
     }
 }

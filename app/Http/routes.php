@@ -23,4 +23,5 @@ Route::group(['middleware' => 'json'], function () {
     resource('author', 'AuthorController', ['except'=>['create', 'show', 'edit']]);
     resource('category', 'CategoryController', ['except'=>['create', 'show', 'edit']]);
     resource('files', 'FileStorageController', ['only'=>['store', 'destroy']]);
+    resource('bank', 'ImageBankController', ['except'=>['create', 'show', 'edit']]);
 });
