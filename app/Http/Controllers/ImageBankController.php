@@ -28,21 +28,17 @@ class ImageBankController extends Controller
      */
     public function store(Request $request)
     {
-        //return [$request->hasFile('hola')];
+        $imageBank = new ImageBank();
+        $imageBank->origin_url          = $request->origin_url;
+        $imageBank->category_id         = $request->category_id;
+        $imageBank->file_storage_id     = $request->file_storage_id;
+        $imageBank->author_id           = $request->author_id;
 
-        $filename = Uuid::generate(4).'.'.$request->file('image')->getExtension();
-        \Storage::put($filename, $request->file('image'));
+        if (!$imageBank->save()) {
+            abort(500, 'bank image was not saved');
+        }
 
-        $bankImage = new BankImage();
-        $bankImage->filename      = $filename;
-        $bankImage->url_original  = $request->url_original;
-        $bankImage->category_id   = $request->category_id;
-        $bankImage->category_id   = $request->category_id;
-        $bankImage->author_id     = $request->author_id;
-
-        //$bankImage->save();
-
-        return $bankImage;
+        return $imageBank;
     }
 
     /**
