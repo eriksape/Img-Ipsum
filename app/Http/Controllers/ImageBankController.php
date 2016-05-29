@@ -49,7 +49,13 @@ class ImageBankController extends Controller
      */
     public function show($id)
     {
-        //
+        $imageBank = ImageBank::find($id);
+
+        if (!$imageBank) {
+            abort(404, 'not image bank found');
+        }
+
+        return $imageBank;
     }
 
     /**
@@ -61,7 +67,15 @@ class ImageBankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $imageBank = $this->show($id);
+
+        $imageBank->fill($request->all());
+
+        if (!$imageBank->save()) {
+            abort(500, 'author was not updated');
+        }
+
+        return ImageBank::find($id);
     }
 
     /**
@@ -72,6 +86,10 @@ class ImageBankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $imageBank = $this->show($id);
+
+        $imageBank->delete();
+
+        return null;
     }
 }
