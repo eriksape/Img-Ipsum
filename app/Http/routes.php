@@ -22,6 +22,11 @@ Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@
 Route::group(['middleware' => 'json'], function () {
     resource('author', 'AuthorController', ['except'=>['create', 'show', 'edit']]);
     resource('category', 'CategoryController', ['except'=>['create', 'show', 'edit']]);
-    resource('files', 'FileStorageController', ['only'=>['store', 'destroy']]);
+
+    Route::group(['prefix' => 'files', 'as'=>'files.'], function () {
+        post('{validation}', ['as'=>'store', 'uses'=>'FileStorageController@store'])->where('validation', '(image|pdf)?');
+        delete('{file}', ['as'=>'destroy', 'uses'=>'FileStorageController@destroy']);
+    });
+
     resource('bank', 'ImageBankController', ['except'=>['create', 'show', 'edit']]);
 });

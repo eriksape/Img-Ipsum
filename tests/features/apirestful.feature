@@ -116,7 +116,7 @@ Característica: Rutas de API Básicas
         "file":"__DIRECTORY__/example.jpg"
       }
     """
-    Cuando hago una peticion POST a "/files"
+    Cuando hago una peticion POST a "/files/image"
     Entonces obtengo una respuesta 201 del servidor
     Y la propiedad "id" existe
     Y la propiedad "id" es igual a "1"
@@ -132,7 +132,7 @@ Característica: Rutas de API Básicas
         "file":"__DIRECTORY__/example2.jpg"
       }
     """
-    Cuando hago una peticion POST a "/files"
+    Cuando hago una peticion POST a "/files/image"
     Entonces obtengo una respuesta 201 del servidor
     Y la propiedad "id" existe
     Y la propiedad "id" es igual a "1"

@@ -230,6 +230,8 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
     {
         $this->requestPayload   = [];
         $this->requestFiles     = [];
+        $this->response         = [];
+        $this->responsePayload  = [];
     }
 
 
@@ -253,7 +255,8 @@ class FeatureContext extends TestCase implements Context, SnippetAcceptingContex
         $fileNames = json_decode(str_replace("__DIRECTORY__/", '', $requestFiles), true);
 
         foreach ($files as $key => $file) {
-            $files[$key] = $file = new UploadedFile($file, $fileNames[$key]);
+            $mime = mime_content_type($file);
+            $files[$key] = new UploadedFile($file, $fileNames[$key], $mime, null, null, true);
         }
 
         $this->requestFiles = $files;
