@@ -17,6 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/generate', 'CustomImageCacheController@generate');
+get('/{width}/{height}/{category?}/{id?}', 'CustomImageCacheController@show');
 
 Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
 Route::group(['middleware' => 'json'], function () {

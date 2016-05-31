@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest as Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Models\Category;
 
 class CategoryController extends Controller
