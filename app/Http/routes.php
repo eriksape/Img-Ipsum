@@ -12,8 +12,7 @@
 */
 
 Route::get('/', function () {
-  $img = Image::make('2833540510_23b8d43865_o.jpg')->fit(1920, 1920);
-  return $img->response('jpg');
+    return view('welcome');
 });
 
 Route::get('/generate', 'CustomImageCacheController@generate');
