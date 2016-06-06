@@ -28,7 +28,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: [/\.js?$/,/\.jsx?$/],
         exclude:[/node_modules/, /rpi_server/],
         loaders: ['react-hot', 'babel'],
         loose:['es6.modules']

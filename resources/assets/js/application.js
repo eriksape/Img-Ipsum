@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
+import App from './components/App.jsx'
 
 render(
-  <div>Hola mundo</div>,
+  <App /> ,
   document.getElementById('application')
 )
