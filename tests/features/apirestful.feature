@@ -160,7 +160,7 @@ Característica: Rutas de API Básicas
     Y que tengo los siguientes valores:
     """
       {
-        "origin_url":"http://facebook.com",
+        "origin_url":"http://google.com",
         "category_id":2,
         "author_id":2,
         "file_storage_id":1
@@ -170,7 +170,7 @@ Característica: Rutas de API Básicas
     Entonces obtengo una respuesta 200 del servidor
     Y la propiedad "id" existe
     Y la propiedad "id" es igual a "1"
-    Y la propiedad "origin_url" es igual a "http://facebook.com"
+    Y la propiedad "origin_url" es igual a "http://google.com"
     Y la propiedad "category_id" es igual a "2"
     Y la propiedad "author_id" es igual a "2"
     Y la propiedad "file_storage_id" es igual a "1"

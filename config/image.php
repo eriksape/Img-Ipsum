@@ -15,6 +15,17 @@ return array(
     |
     */
 
-    'driver' => 'gd'
+    'driver' => 'gd',
+
+    /*
+      Categories
+     */
+
+    'category' => array(
+      'abstract','animals','business', 'cats',
+      'city', 'food', 'nightlife', 'fashion',
+      'people', 'nature', 'sports', 'technics',
+      'transport'
+    )
 
 );

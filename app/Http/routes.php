@@ -23,6 +23,19 @@ Route::get('/app/{all?}', function () {
 Route::get('/generate', 'CustomImageCacheController@generate');
 get('/{width}/{height}/{category?}/{id?}', 'CustomImageCacheController@show');
 
+get('/token', function (Request $request) {
+  return response(csrf_token());
+});
+
+get('/token/new', function (Request $request) {
+  Session::regenerateToken();
+  return [csrf_token(), $request->cookie('XSRF-TOKEN')];
+});
+
+get('/generate', 'CustomImageCacheController@generate');
+
+get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
+
 Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
 Route::group(['middleware' => 'json'], function () {
     resource('author', 'AuthorController', ['except'=>['create', 'show', 'edit']]);

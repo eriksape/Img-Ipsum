@@ -2,7 +2,7 @@ import React from 'react'
 const App = React.createClass({
   render(){
     return(
-      <div>prueba</div>
+      <div>esto es una pruebas</div>
     )
   }
 })

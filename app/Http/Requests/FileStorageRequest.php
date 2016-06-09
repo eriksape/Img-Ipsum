@@ -34,12 +34,12 @@ class FileStorageRequest extends Request
                 $validation = '';
                 switch ($this->validation) {
                     case 'image':
-                        $validation.='required|image';
+                        $validation.='image';
                     break;
                     case 'pdf':
-                        $validation.='required|mimetypes:application/pdf';
+                        $validation.='mimetypes:application/pdf';
                     default:
-                        $validation = 'required';
+                        $validation = '';
                     break;
                 }
                 return ['file'=>$validation];
