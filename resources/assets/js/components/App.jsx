@@ -3,8 +3,8 @@ const App = React.createClass({
   render(){
     return(
       <button className="ui button">
-  Follow
-</button>
+        Follow
+      </button>
     )
   }
 })

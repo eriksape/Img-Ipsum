@@ -1,6 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
 
+var definePlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+});
+
 module.exports = {
   debug: true,
   devtool: '#eval-source-map',
@@ -21,7 +25,8 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    definePlugin
   ],
 
 
