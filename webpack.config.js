@@ -13,7 +13,7 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
-    './application'
+    './application.index.js'
   ],
 
   output: {
@@ -33,10 +33,16 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: [/\.js?$/,/\.jsx?$/],
+        test: [/\.jsx?$/],
         exclude:[/node_modules/, /rpi_server/],
         loaders: ['react-hot', 'babel'],
-        loose:['es6.modules']
+        loose:['es6.modules'],
+      },
+      {
+        test: [/\.js?$/],
+        exclude:[/node_modules/, /rpi_server/],
+        loader: 'babel',
+        loose:['es6.modules'],
       },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.less$/, loader: 'style!css!less' },
@@ -47,7 +53,7 @@ module.exports = {
       { test: /.*\.(gif|png|jpe?g|svg)$/i, loader:'file-loader' },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
 
     ]
