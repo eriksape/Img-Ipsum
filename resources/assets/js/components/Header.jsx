@@ -1,5 +1,6 @@
 import React from 'react'
 import NavLink from './NavLink.jsx'
+import { FormattedMessage } from 'react-intl'
 
 export default React.createClass({
   render() {
@@ -7,8 +8,10 @@ export default React.createClass({
       <div>
         <h1>React Router Tutorial</h1>
         <ul role="nav">
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/repos">Repos</NavLink></li>
+          <li><NavLink to="/app/about">
+            <FormattedMessage id="app.lol" />
+          </NavLink></li>
+          <li><NavLink to="/app/repos">Repos</NavLink></li>
         </ul>
         {this.props.children}
       </div>

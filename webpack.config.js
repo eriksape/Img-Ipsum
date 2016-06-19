@@ -13,7 +13,7 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
-    './application.index.js'
+    './application'
   ],
 
   output: {

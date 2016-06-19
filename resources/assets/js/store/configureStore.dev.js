@@ -16,12 +16,11 @@ const logger = createLogger({
   duration: true,
 })
 
-export default function configureStore(onComplete) {
+export default function configureStore(initialState) {
   const store = createStore(
     rootReducer,
-    undefined, // no need for initialState
+    initialState, //undefined
     compose(
-      //autoRehydrate({whitelist:['form']}),
       applyMiddleware(thunk, logger, router)
     )
   )

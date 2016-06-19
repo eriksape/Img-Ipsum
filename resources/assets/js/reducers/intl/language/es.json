@@ -1,0 +1,5 @@
+{
+  "app.title":"Holaa {name}",
+  "app.message":"I have {numCats, number} cats.",
+  "app.lol":"hello"
+}
