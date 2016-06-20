@@ -8,12 +8,7 @@ import configureStore from './store/configureStore'
 import {loadLocale} from './reducers/intl/intlActions'
 import Routes from './application.routes'
 
-const getInitialState = () => ({
-  intl: {
-    locale: 'en',
-    messages: {}
-  }
-})
+const getInitialState = () => ({})
 
 const store = configureStore( getInitialState() )
 const history = syncHistoryWithStore(browserHistory, store)
@@ -25,7 +20,7 @@ store.dispatch(loadLocale('es'))
 require('./../semantic/semantic.less');
 render(
   <Provider store={store}>
-    <Routes history={history} />
+    <Routes history={history} store={store} />
   </Provider>,
   document.getElementById('application')
 )
