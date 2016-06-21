@@ -1,10 +1,10 @@
-import React from 'react'
-import NavLink from './NavLink.jsx'
-import { FormattedMessage } from 'react-intl'
+import React , { Component } from 'react'
 import { Menu } from 'stardust'
+import { FormattedMessage } from 'react-intl'
+import NavLink from './../../ui/components/NavLink.jsx'
 
-export default React.createClass({
-  menu(){
+export default class MenuApp extends Component{
+  render(){
     return(
       <Menu className="ui secondary pointing menu">
         <NavLink to="/app/about" className="item">
@@ -15,13 +15,5 @@ export default React.createClass({
         </div>
       </Menu>
     )
-  },
-  render() {
-    return (
-      <div>
-        {this.menu()}
-        {this.props.children}
-      </div>
-    )
   }
-})
+}

@@ -6,8 +6,8 @@ import {
 } from 'react-router'
 import { isEmpty } from 'lodash'
 
-import App from './components/App.jsx'
-import Header from './components/Header.jsx'
+import App from './modules/app/components/App.jsx'
+import Package from './modules/app/components/Package.jsx'
 
 export default class routes extends Component {
   render(){
@@ -16,7 +16,7 @@ export default class routes extends Component {
       return(<p>Cargando</p>)
     return(
       <Router history={history}>
-        <Route path="/app" component={Header}>
+        <Route path="/app" component={Package}>
           <IndexRoute component={App}></IndexRoute>
           <Route path="/app/about"></Route>
           <Route path="/app/repos"></Route>
