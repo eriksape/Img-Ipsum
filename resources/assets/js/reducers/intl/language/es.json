@@ -1,5 +1,7 @@
 {
-  "app.title":"Holaa {name}",
-  "app.message":"I have {numCats, number} cats.",
-  "app.lol":"hello"
+  "app.title": "Holaa {name}",
+  "app.message": "I have {numCats, number} cats.",
+  "title.authors": "Autores",
+  "title.categories": "Categorias",
+  "title.images": "Imágenes"
 }

@@ -18,8 +18,9 @@ export default class routes extends Component {
       <Router history={history}>
         <Route path="/app" component={Package}>
           <IndexRoute component={App}></IndexRoute>
-          <Route path="/app/about"></Route>
-          <Route path="/app/repos"></Route>
+          <Route path="/app/authors"></Route>
+          <Route path="/app/categories"></Route>
+          <Route path="/app/images"></Route>
         </Route>
       </Router>
     )
