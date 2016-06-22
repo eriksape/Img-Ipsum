@@ -5,7 +5,7 @@
     "test:watch": "npm test -- --watch"
   },
   "browser":{
-    "lodash":"./resources/assets/js/lib/lodash/lang.js"
+    "lodash":"./resources/assets/js/lib/lodash/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
