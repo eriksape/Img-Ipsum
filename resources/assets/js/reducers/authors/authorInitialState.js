@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable'
 
-var InitialState = fromJS([])
+var InitialState = fromJS({})
 
 export default InitialState
