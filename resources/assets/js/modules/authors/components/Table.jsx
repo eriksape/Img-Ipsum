@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Table } from 'stardust'
+import { Link } from 'react-router'
 
 import Paginator from  './../../ui/components/Paginator.jsx'
 
@@ -15,7 +16,7 @@ export default class AuthorTable extends Component{
     )
   }
   render(){
-    const { data, changeCurrPage, currentPage, lastPage } = this.props
+    const { data, changeCurrPage, currPage, lastPage } = this.props
     return(
       <div>
         <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}>

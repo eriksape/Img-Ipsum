@@ -22,7 +22,7 @@ const Authors = React.createClass({
     return(
       <Table
         data={author.get('data').toJSON()}
-        currentPage={author.get('current_page')}
+        currPage={author.get('current_page')}
         lastPage={author.get('last_page')}
         changeCurrPage={this.changeCurrPage}
       />

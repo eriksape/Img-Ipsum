@@ -1,6 +1,6 @@
 import Actions from 'redux-fetch-actions'
 //import authorization from './../../lib/authorization'
-const authorization = false
+const authorization = () => false
 const uri = '/author'
 const server = ''
 const options = {
