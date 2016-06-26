@@ -1,16 +1,22 @@
+import { SubmissionError } from 'redux-form';
 import { isUndefined } from 'lodash'
 import raspberry from './authorActions'
 
-import initialState from './authorInitialState'
+import InitialState from './authorInitialState'
+
+const initialState = new InitialState
 
 const { success, fail } = raspberry.constants
 
 export default (state = initialState, action)=>{
-  switch (action.type) {
+  const { type, promise, payload } = action
+  switch (type) {
     case success.index:
-      return state.merge(action.payload.value)
+      return state.merge(payload.value)
       break
     case fail.index:
+    case fail.update:
+      promise.reject(new SubmissionError( payload.value ))
     default:
       return state
       break
