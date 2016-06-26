@@ -19,6 +19,7 @@ import authorActions from './reducers/authors/authorActions'
 import App from './modules/app/components/App.jsx'
 import Package from './modules/app/components/Package.jsx'
 import TableAuthors from './modules/authors/containers/Table.jsx'
+import FormAuthors from './modules/authors/containers/Form.jsx'
 
 addLocaleData([
   ...esLocaleData,
@@ -48,7 +49,7 @@ render(
       <Route path="/app" component={Package}>
         <IndexRoute component={App}></IndexRoute>
         <Route path="/app/authors" component={TableAuthors}></Route>
-        <Route path="/app/authors/edit/:id"></Route>
+        <Route path="/app/authors/edit/:id" component={FormAuthors}></Route>
         <Route path="/app/categories"></Route>
         <Route path="/app/images"></Route>
       </Route>

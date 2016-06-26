@@ -15,19 +15,19 @@ const Authors = React.createClass({
     }))
    },
   render(){
-    const { author } = this.props
-    if( author.size < 1 )
+    const { authors } = this.props
+    if( authors.size < 1 )
       return <div>cargando</div>
 
     return(
       <Table
-        data={author.get('data').toJSON()}
-        currPage={author.get('current_page')}
-        lastPage={author.get('last_page')}
+        data={authors.get('data').toJSON()}
+        currPage={authors.get('current_page')}
+        lastPage={authors.get('last_page')}
         changeCurrPage={this.changeCurrPage}
       />
     )
   }
 })
 
-export default connect( state => pick(state, 'author') )(Authors)
+export default connect( state => pick(state, 'authors') )(Authors)
