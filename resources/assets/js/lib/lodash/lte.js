@@ -1,6 +1,6 @@
 /**
  * lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize category="object,lang" -o lodash`
+ * Build: `lodash modularize category="object,lang,array,collection" -o lodash`
  * Copyright jQuery Foundation and other contributors <https://jquery.org/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>

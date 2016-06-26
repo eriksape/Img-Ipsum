@@ -20,5 +20,7 @@ module.exports = {
 
   'omit': require('./omit'),
   'pick': require('./pick'),
+  'concat': require('./concat'),
+  'reduce': require('./reduce')
 
 };
