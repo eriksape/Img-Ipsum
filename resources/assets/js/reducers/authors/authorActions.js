@@ -17,6 +17,7 @@ const action = new Actions(
   server,
   {
     index:{uri:uri, method:'get'},
+    show:{uri:uri+'/:id', method:'get'},
     store:{uri:uri, method:'post'},
     update:{uri:uri+'/:id', method:'put'},
     destroy:{uri:uri+'/:id', method:'delete'},

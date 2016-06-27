@@ -14,6 +14,17 @@ export default (state = initialState, action)=>{
     case success.index:
       return state.merge(payload.value)
       break
+    case success.show:
+    case 'authors_SET_FORM':
+      return state.merge({
+        form:payload.value
+      })
+      break
+    case 'authors_UNSET_FORM':
+      return state.merge({
+        form:{}
+      })
+      break
     case fail.index:
     case fail.update:
       promise.reject(new SubmissionError( payload.value ))

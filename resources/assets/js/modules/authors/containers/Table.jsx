@@ -16,7 +16,7 @@ const Authors = React.createClass({
    },
   render(){
     const { authors } = this.props
-    if( authors.size < 1 )
+    if( authors.get('data').size < 1 )
       return <div>cargando</div>
 
     return(

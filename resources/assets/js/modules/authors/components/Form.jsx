@@ -38,8 +38,8 @@ const AuthorForm = (props) => {
     author, submitErrors
   } = props
   return (
-    <div style={{margin: '2em 2em',padding: '2em 2em',position: 'relative'}}>
-      <form onSubmit={handleSubmit} className={classnames("ui form", {'error':submitErrors.size>0})}>
+    <div style={{margin: '0em 2em',padding: '0em 2em',position: 'relative'}}>
+      <form onSubmit={handleSubmit} className={classnames("ui form segment", {'error':submitErrors.size>0})}>
         <Field name="name" label="Name" component={renderInput} type="text" placeholder="Name" />
         <Field name="site" label="Site" component={renderInput} type="text" placeholder="Site" />
 

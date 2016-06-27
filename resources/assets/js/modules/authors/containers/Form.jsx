@@ -1,4 +1,4 @@
-import { pick } from 'lodash'
+import { pick, isUndefined } from 'lodash'
 import React from 'react'
 import {connect} from 'react-redux'
 //import {reset} from 'redux-form';
@@ -7,8 +7,39 @@ import AuthorForm from './../components/Form.jsx'
 import authorActions from './../../../reducers/authors/authorActions'
 
 const Form =  React.createClass ({
-  propTypes:{
-    author: React.PropTypes.object,
+  componentDidMount(){
+    this.loadComponent(this.props)
+  },
+  componentDidUpdate(){
+    this.loadComponent(this.props)
+  },
+  componentWillUnmount(){
+    const { dispatch } = this.props
+    dispatch({type:'authors_UNSET_FORM'})
+  },
+
+  loadComponent(props){
+    const { authors, params, dispatch } = props
+
+    if(authors.get('data').size > 0){
+
+      const author = authors.get('data')
+      .find(author => author.get('id') === params.id)
+
+      if(authors.get('form').size < 1){
+
+        if( !isUndefined(author) ){
+          dispatch({
+            type:'authors_SET_FORM',
+            payload:{value:author.toJSON()}
+          })
+        } else {
+          dispatch(authorActions.show({pathKeys:params}))
+        }
+
+      }
+
+    }
   },
 
   submit(values, dispatch){
@@ -24,18 +55,16 @@ const Form =  React.createClass ({
   },
 
   render() {
-    const { authors, params } = this.props
 
+    const { authors } = this.props
 
-    if(authors.get('data').size < 1)
+    const author = authors.get('form')
+
+    if( author.size < 1 ){
       return <div>Cargando...</div>
+    }
 
-    const author = authors.get('data')
-    .find(
-      author => author.get('id') === params.id
-    ).toJSON()
-
-    return <AuthorForm onSubmit={this.submit} initialValues={author} />
+    return <AuthorForm onSubmit={this.submit} initialValues={author.toJSON()} />
   }
 })
 
