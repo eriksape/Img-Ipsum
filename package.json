@@ -9,20 +9,25 @@
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
+    "babel-jest": "^13.0.0",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.11.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "browser-sync": "^2.13.0",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "expect": "^1.20.1",
     "file-loader": "^0.9.0",
     "gulp": "^3.8.8",
+    "jest-cli": "^13.0.0",
+    "jsdom": "^9.3.0",
     "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.5.3",
+    "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "^1.3.0",
     "react-intl-loader": "^1.0.2",
     "semantic-ui-less": "^2.1.8",
@@ -45,10 +50,17 @@
     "react-router": "^2.5.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
-    "redux-fetch-actions": "0.0.11",
+    "redux-fetch-actions": "0.0.12",
     "redux-form": "^6.0.0-alpha.15",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
-    "stardust": "^0.15.1"
+    "stardust": "^0.16.0"
+  },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/react-dom/",
+      "<rootDir>/node_modules/react-addons-test-utils/"
+    ]
   }
 }
