@@ -17,9 +17,9 @@ export default (state = initialState, action)=>{
       break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
-      if(index >= 0)
-        return state.mergeIn(['data', index], payload.value)
-      else return state
+      if(index >= 0) return state.mergeIn(['data', index], payload.value)
+      return state
+      break
     case success.show:
     case 'authors_SET_FORM':
       return state.merge({
