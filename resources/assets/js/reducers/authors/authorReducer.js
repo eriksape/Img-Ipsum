@@ -17,7 +17,6 @@ export default (state = initialState, action)=>{
       break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
-      debugger
       if(index >= 0)
         return state.mergeIn(['data', index], payload.value)
       else return state
