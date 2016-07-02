@@ -32,19 +32,36 @@ class ListErrors extends React.Component {
     )
   }
 }
+
+class SuccessMessage extends React.Component {
+  render(){
+    return(
+      <div className="ui success message">
+        <div className="header">Formulario Guardado</div>
+        <p>Todos los cambios se han guardado exitosamente.</p>
+      </div>
+    )
+  }
+}
+
 const AuthorForm = (props) => {
   const {
     handleSubmit, pristine, reset, submitting, submitFailed,
-    author, submitErrors
+    author, submitErrors, success
   } = props
+  const styleForm = classnames("ui form segment",
+    {'error':submitErrors.size>0},
+    {'success': success}
+  )
   return (
     <div style={{margin: '0em 2em',padding: '0em 2em',position: 'relative'}}>
-      <form onSubmit={handleSubmit} className={classnames("ui form segment", {'error':submitErrors.size>0})}>
+      <form onSubmit={handleSubmit} className={styleForm}>
         <Field name="name" label="Name" component={renderInput} type="text" placeholder="Name" />
         <Field name="site" label="Site" component={renderInput} type="text" placeholder="Site" />
 
           <button type="submit" className="ui button">Submit</button>
           <ListErrors  list={submitErrors} />
+          <SuccessMessage />
       </form>
     </div>
   )

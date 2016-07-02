@@ -17,6 +17,7 @@ export default (state = initialState, action)=>{
       break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
+      promise.resolve( payload.value )
       if(index >= 0) return state.mergeIn(['data', index], payload.value)
       return state
       break

@@ -18,6 +18,12 @@ const Form =  React.createClass ({
     dispatch({type:'authors_UNSET_FORM'})
   },
 
+  getInitialState(){
+    return {
+      success:false,
+    }
+  },
+
   loadComponent(props){
     const { authors, params, dispatch } = props
 
@@ -42,14 +48,22 @@ const Form =  React.createClass ({
     }
   },
 
+  setSuccess( bValue ){
+    this.setState({success:bValue})
+  },
+
   submit(values, dispatch){
     const { params } = this.props
+    const {setSuccess} = this
 
     return new Promise( (resolve, reject) =>{
-      console.log(values);
       dispatch(authorActions
         .update({pathKeys:params, body:values, promise:{reject:reject, resolve:resolve}})
       )
+    } )
+    .then( p => {
+      setSuccess(true)
+      setTimeout( ()=>{setSuccess(false)} , 3000);
     } )
 
   },
@@ -57,6 +71,8 @@ const Form =  React.createClass ({
   render() {
 
     const { authors } = this.props
+    const { success } = this.state
+    console.log('success', success)
 
     const author = authors.get('form')
 
@@ -64,7 +80,7 @@ const Form =  React.createClass ({
       return <div>Cargando...</div>
     }
 
-    return <AuthorForm onSubmit={this.submit} initialValues={author.toJSON()} />
+    return <AuthorForm onSubmit={this.submit} initialValues={author.toJSON()} success={success} />
   }
 })
 
