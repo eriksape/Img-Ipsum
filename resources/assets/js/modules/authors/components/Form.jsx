@@ -50,6 +50,7 @@ const AuthorForm = (props) => {
     author, submitErrors, success
   } = props
   const styleForm = classnames("ui form segment",
+    {'loading': submitting},
     {'error':submitErrors.size>0},
     {'success': success}
   )
