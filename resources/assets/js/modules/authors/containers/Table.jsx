@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { pick } from 'lodash'
 import authorActions from './../../../reducers/authors/authorActions'
 import Table from './../components/Table.jsx'
+import TableLoad from './../../ui/components/TableLoad.jsx'
 
 
 const Authors = React.createClass({
@@ -17,14 +18,7 @@ const Authors = React.createClass({
   render(){
     const { authors } = this.props
     if( authors.get('data').size < 1 )
-      return (
-        <div className="ui segment">
-          <div className="ui active inverted dimmer">
-            <div className="ui small text loader">Cargando</div>
-          </div>
-          <img className="ui wireframe image" src={require('!!url!./img/short-paragraph.png')} />
-        </div>
-      )
+      return <TableLoad />
 
     return(
       <Table
