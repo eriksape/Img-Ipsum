@@ -5,15 +5,27 @@ import authorActions from './../../../reducers/authors/authorActions'
 import Table from './../components/Table.jsx'
 import TableLoad from './../../ui/components/TableLoad.jsx'
 
-
 const Authors = React.createClass({
   changeCurrPage(currPage) {
-    const { dispatch } = this.props
+    const { dispatch, authors } = this.props
+    const perPage = authors.get('per_page')
     dispatch(authorActions.index({
       body:{
-        page:currPage
+        page:currPage,
+        per_page:perPage,
       }
     }))
+   },
+   changePerPage(){
+     const { dispatch, authors } = this.props
+     const currPage = authors.get('current_page')
+     const perPage = arguments[1];
+     dispatch(authorActions.index({
+       body:{
+         page:currPage,
+         per_page:perPage,
+       }
+     }))
    },
   render(){
     const { authors } = this.props
@@ -25,7 +37,10 @@ const Authors = React.createClass({
         data={authors.get('data').toJSON()}
         currPage={authors.get('current_page')}
         lastPage={authors.get('last_page')}
+        perPage={authors.get('per_page')}
         changeCurrPage={this.changeCurrPage}
+        changePerPage={this.changePerPage}
+        isFetching={authors.get('isFetching')}
       />
     )
   }

@@ -13,7 +13,7 @@ export default (state = initialState, action)=>{
   let index = -1;
   switch (type) {
     case success.index:
-      return state.merge(payload.value)
+      return state.merge(payload.value).merge({isFetching:false})
       break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
@@ -32,6 +32,10 @@ export default (state = initialState, action)=>{
         form:{}
       })
       break
+    case 'isFetching':
+      return state.merge({
+        isFetching:true
+      })
     case fail.index:
     case fail.update:
     debugger

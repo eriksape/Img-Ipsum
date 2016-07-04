@@ -10,7 +10,8 @@ var InitialState = Record({
   from:null,
   to:null,
   data:Map([]),
-  form:Map({})
+  form:Map({}),
+  isFetching:false
 })
 
 export default InitialState
