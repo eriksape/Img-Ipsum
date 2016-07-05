@@ -11,9 +11,10 @@ const { success, fail } = raspberry.constants
 export default (state = initialState, action)=>{
   const { type, promise, payload } = action
   let index = -1;
+  state = state.merge({isFetching:false})
   switch (type) {
     case success.index:
-      return state.merge(payload.value).merge({isFetching:false})
+      return state.merge(payload.value)
       break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
