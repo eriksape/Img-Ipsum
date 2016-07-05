@@ -50,6 +50,7 @@ render(
         <IndexRoute component={App}></IndexRoute>
         <Route path="/app/authors" component={TableAuthors}></Route>
         <Route path="/app/authors/edit/:id" component={FormAuthors}></Route>
+        <Route path="/app/authors/new" component={FormAuthors}></Route>
         <Route path="/app/categories"></Route>
         <Route path="/app/images"></Route>
       </Route>
