@@ -16,6 +16,10 @@ export default (state = initialState, action)=>{
     case success.index:
       return state.merge(payload.value)
       break
+    case success.store:
+      promise.resolve( payload.value )
+      return state
+      break
     case success.update:
       index = state.get('data').findIndex( d => d.get('id')==payload.value.id )
       promise.resolve( payload.value )
@@ -38,8 +42,9 @@ export default (state = initialState, action)=>{
         isFetching:true
       })
     case fail.index:
+    case fail.store:
     case fail.update:
-    debugger
+    // debugger
       promise.reject(new SubmissionError( payload.value ))
     default:
       return state
