@@ -1,10 +1,8 @@
 import React from 'react'
-import { Dropdown } from 'stardust'
+import { Dropdown, Input } from 'stardust'
 import Paginator from  './Paginator.jsx'
 import options from './../constants/table.options'
 import TableLoad from './TableLoad.jsx'
-
-
 
 export default React.createClass({
   loadChildren(){
@@ -25,6 +23,7 @@ export default React.createClass({
           selection
           onChange={changePerPage}
         />
+      <Input className='icon' icon='search' placeholder='Search...' />
       {this.loadChildren()}
         <Paginator currPage={currPage} lastPage={lastPage}
           onChange={changeCurrPage}/>
