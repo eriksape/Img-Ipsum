@@ -16,8 +16,9 @@ class AuthorController extends Controller
     {
         $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
         if ($request->has('search')) {
-            return Author::whereName('like', '%'.$request->search.'%')
-            ->orWhereSite('like', '%'.$request->search.'%');
+            return Author::where('name', 'like', '%'.$request->search.'%')
+            ->orWhere('site', 'like', '%'.$request->search.'%')
+            ->paginate(intval($per_page));
         }
 
         return Author::paginate(intval($per_page));
