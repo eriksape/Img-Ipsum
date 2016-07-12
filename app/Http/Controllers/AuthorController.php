@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorRequest as Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Author;
 
 class AuthorController extends Controller
@@ -14,9 +12,15 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Author::paginate(10);
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
+        if ($request->has('search')) {
+            return Author::whereName('like', '%'.$request->search.'%')
+            ->orWhereSite('like', '%'.$request->search.'%');
+        }
+
+        return Author::paginate(intval($per_page));
     }
 
     /**
@@ -29,7 +33,7 @@ class AuthorController extends Controller
     {
         $author = new Author($request->all());
 
-        if (!$author->save()) {
+        if (! $author->save()) {
             abort(500, 'author was not saved');
         }
 
@@ -46,7 +50,7 @@ class AuthorController extends Controller
     {
         $author = Author::find($id);
 
-        if (!$author) {
+        if (! $author) {
             abort(404, 'not author found');
         }
 
@@ -66,7 +70,7 @@ class AuthorController extends Controller
 
         $author->fill($request->all());
 
-        if (!$author->save()) {
+        if (! $author->save()) {
             abort(500, 'author was not updated');
         }
 
@@ -85,6 +89,6 @@ class AuthorController extends Controller
 
         $author->delete();
 
-        return null;
+        return;
     }
 }
