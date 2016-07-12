@@ -1,8 +1,8 @@
 import { SubmissionError } from 'redux-form';
 import { isUndefined } from 'lodash'
-import raspberry from './authorActions'
+import raspberry from './actions'
 
-import InitialState from './authorInitialState'
+import InitialState from './initialState'
 
 const initialState = new InitialState
 
