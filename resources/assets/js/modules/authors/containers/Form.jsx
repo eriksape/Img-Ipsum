@@ -3,7 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import AuthorForm from './../components/Form.jsx'
 
-import authorActions from './../../../reducers/authors/authorActions'
+import authorActions from './../../../reducers/authors/actions'
 
 const Form =  React.createClass ({
   componentDidMount(){

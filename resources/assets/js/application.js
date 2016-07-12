@@ -14,7 +14,7 @@ import enLocaleData from 'react-intl/locale-data/en'
 
 import configureStore from './store/configureStore'
 import {loadLocale} from './reducers/intl/intlActions'
-import authorActions from './reducers/authors/authorActions'
+import authorActions from './reducers/authors/actions'
 
 import App from './modules/app/components/App.jsx'
 import Package from './modules/app/components/Package.jsx'

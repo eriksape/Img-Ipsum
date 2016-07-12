@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { pick } from 'lodash'
-import authorActions from './../../../reducers/authors/authorActions'
+import authorActions from './../../../reducers/authors/actions'
 import Table from './../components/Table.jsx'
 import TableLoad from './../../ui/components/TableLoad.jsx'
 
