@@ -11,7 +11,8 @@ var InitialState = Record({
   to:null,
   data:Map([]),
   form:Map({}),
-  isFetching:false
+  isFetching:false,
+  search:''
 })
 
 export default InitialState

@@ -1,4 +1,9 @@
 import Actions from 'redux-fetch-actions'
+import {
+  authors_SET_SEARCH,
+  authors_SET_PER_PAGE,
+  authors_SET_CURRENT_PAGE
+} from './constants'
 //import authorization from './../../lib/authorization'
 const authorization = () => false
 const uri = '/author'
@@ -26,3 +31,18 @@ const action = new Actions(
 )
 
 export default action;
+
+export const setSearch = search => ({
+  type:authors_SET_SEARCH,
+  payload:search
+})
+
+export const setPerPage = per_page => ({
+  type:authors_SET_PER_PAGE,
+  payload:per_page
+})
+
+export const setCurrentPage = current_page => ({
+  type:authors_SET_CURRENT_PAGE,
+  payload:current_page
+})
