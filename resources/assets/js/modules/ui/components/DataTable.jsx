@@ -14,7 +14,14 @@ export default React.createClass({
     return children
   },
   render() {
-    const { currPage, lastPage, perPage, changeCurrPage, changePerPage } = this.props
+    const {
+      currPage,
+      lastPage,
+      perPage,
+      changeCurrPage,
+      changePerPage,
+      changeSearch
+    } = this.props
     return (
       <div>
         <Dropdown
@@ -23,7 +30,7 @@ export default React.createClass({
           selection
           onChange={changePerPage}
         />
-      <Input className='icon' icon='search' placeholder='Search...' />
+      <Input className='icon' icon='search' placeholder='Search...' onChange={changeSearch} />
       {this.loadChildren()}
         <Paginator currPage={currPage} lastPage={lastPage}
           onChange={changeCurrPage}/>

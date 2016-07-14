@@ -17,7 +17,16 @@ export default class AuthorTable extends Component{
     )
   }
   render(){
-    const { data, changeCurrPage, changePerPage, currPage, lastPage, perPage, isFetching } = this.props
+    const {
+      data,
+      changeCurrPage,
+      changePerPage,
+      changeSearch,
+      currPage,
+      lastPage,
+      perPage,
+      isFetching
+    } = this.props
     return(
 
     <div className="ui segment">
@@ -29,8 +38,15 @@ export default class AuthorTable extends Component{
       <div className="ui clearing divider"></div>
       <p></p>
 
-      <DataTable currPage={currPage} lastPage={lastPage} perPage={perPage}
-        changeCurrPage={changeCurrPage} changePerPage={changePerPage} isFetching={isFetching}>
+      <DataTable
+        currPage={currPage}
+        lastPage={lastPage}
+        perPage={perPage}
+        changeCurrPage={changeCurrPage}
+        changePerPage={changePerPage}
+        changeSearch={changeSearch}
+        isFetching={isFetching}
+      >
         <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}>
           <Table.Column dataKey='name' />
           <Table.Column dataKey='site' />

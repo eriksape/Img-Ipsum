@@ -1,32 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { pick } from 'lodash'
-import authorActions from './../../../reducers/authors/actions'
+import authorActions, {
+  setSearch,
+  setPerPage,
+  setCurrentPage
+} from './../../../reducers/authors/actions'
 import Table from './../components/Table.jsx'
 import TableLoad from './../../ui/components/TableLoad.jsx'
 
+let timeout = null
+
 const Authors = React.createClass({
-  changeCurrPage(currPage) {
+  updateTable(){
     const { dispatch, authors } = this.props
-    const perPage = authors.get('per_page')
     dispatch(authorActions.index({
       body:{
-        page:currPage,
-        per_page:perPage,
+        page:authors.get('current_page')
+        per_page:authors.get('per_page'),
+        search:authors.get('search')
       }
     }))
-   },
-   changePerPage(){
-     const { dispatch, authors } = this.props
-     const currPage = authors.get('current_page')
-     const perPage = arguments[1];
-     dispatch(authorActions.index({
-       body:{
-         page:currPage,
-         per_page:perPage,
-       }
-     }))
-   },
+  },
+  changeCurrPage(currPage){
+    const { dispatch } = this.props
+    dispatch(setCurrentPage(currPage))
+    this.updateTable()
+  },
+  changePerPage(){
+    const { dispatch } = this.props
+    const perPage = arguments[1];
+    dispatch(setPerPage(perPage))
+    this.updateTable()
+  },
+  changeSearch(event){
+    const { value:search } = event.target
+    clearTimeout(timeout)
+    timeout = setTimeout(function () {
+      dispatch(setSearch(search))
+      this.updateTable()
+    }, 500);
+  },
   render(){
     const { authors } = this.props
     if( authors.get('data').size < 1 )
@@ -40,6 +54,7 @@ const Authors = React.createClass({
         perPage={authors.get('per_page')}
         changeCurrPage={this.changeCurrPage}
         changePerPage={this.changePerPage}
+        changeSearch={this.changeSearch}
         isFetching={authors.get('isFetching')}
       />
     )
