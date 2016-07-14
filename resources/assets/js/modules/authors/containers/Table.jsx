@@ -16,9 +16,9 @@ const Authors = React.createClass({
     const { dispatch, authors } = this.props
     dispatch(authorActions.index({
       body:{
-        page:authors.get('current_page')
+        page:authors.get('current_page'),
         per_page:authors.get('per_page'),
-        search:authors.get('search')
+        search:authors.get('search'),
       }
     }))
   },
@@ -35,11 +35,13 @@ const Authors = React.createClass({
   },
   changeSearch(event){
     const { value:search } = event.target
+    const { dispatch } = this.props
     clearTimeout(timeout)
-    timeout = setTimeout(function () {
+    timeout = setTimeout( (function () {
       dispatch(setSearch(search))
+      dispatch(setCurrentPage(1))
       this.updateTable()
-    }, 500);
+    }).bind(this), 500)
   },
   render(){
     const { authors } = this.props
