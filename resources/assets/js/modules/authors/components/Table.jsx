@@ -16,15 +16,19 @@ export default class AuthorTable extends Component{
       </div>
     )
   }
+
   render(){
     const {
       data,
       changeCurrPage,
       changePerPage,
       changeSearch,
+      changeSort,
       currPage,
       lastPage,
       perPage,
+      sort,
+      direction,
       isFetching
     } = this.props
     return(
@@ -47,7 +51,9 @@ export default class AuthorTable extends Component{
         changeSearch={changeSearch}
         isFetching={isFetching}
       >
-        <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}>
+        <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}
+        sort={{key:sort, direction:direction}} onSortChange={changeSort}
+        >
           <Table.Column dataKey='name' />
           <Table.Column dataKey='site' />
           <Table.Column dataKey='options' cellRenderer={ this.options } />
