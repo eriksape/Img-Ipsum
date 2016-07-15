@@ -56,17 +56,11 @@ const Authors = React.createClass({
 
     return(
       <Table
-        data={authors.get('data').toJSON()}
-        currPage={authors.get('current_page')}
-        lastPage={authors.get('last_page')}
-        perPage={authors.get('per_page')}
-        sort={authors.get('sort')}
-        direction={authors.get('direction')=='asc'?'ascending':'descending'}
+        model={authors}
         changeCurrPage={this.changeCurrPage}
         changePerPage={this.changePerPage}
         changeSearch={this.changeSearch}
         changeSort={this.changeSort}
-        isFetching={authors.get('isFetching')}
       />
     )
   }

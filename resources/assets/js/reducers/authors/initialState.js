@@ -17,4 +17,11 @@ var InitialState = Record({
   direction:'asc'
 })
 
+InitialState.prototype.getSorting = function() {
+  return {
+    key:this.sort,
+    direction:this.direction==='asc'?'ascending':'descending'
+  }
+};
+
 export default InitialState

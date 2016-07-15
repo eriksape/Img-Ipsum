@@ -19,17 +19,11 @@ export default class AuthorTable extends Component{
 
   render(){
     const {
-      data,
       changeCurrPage,
       changePerPage,
       changeSearch,
       changeSort,
-      currPage,
-      lastPage,
-      perPage,
-      sort,
-      direction,
-      isFetching
+      model,
     } = this.props
     return(
 
@@ -43,16 +37,20 @@ export default class AuthorTable extends Component{
       <p></p>
 
       <DataTable
-        currPage={currPage}
-        lastPage={lastPage}
-        perPage={perPage}
+        currPage={model.get('current_page')}
+        lastPage={model.get('last_page')}
+        perPage={model.get('per_page')}
+        isFetching={model.get('isFetching')}
         changeCurrPage={changeCurrPage}
         changePerPage={changePerPage}
         changeSearch={changeSearch}
-        isFetching={isFetching}
       >
-        <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}
-        sort={{key:sort, direction:direction}} onSortChange={changeSort}
+        <Table
+          className='selectable'
+          data={model.get('data').toJSON()}
+          onSelectRow={this.handleSelectRow}
+          sort={model.getSorting()}
+          onSortChange={changeSort}
         >
           <Table.Column dataKey='name' />
           <Table.Column dataKey='site' />
