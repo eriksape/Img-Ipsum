@@ -15,13 +15,21 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
+        $sort = $request->has('sort') ? $request->sort : 'name';
+        $direction = $request->has('direction') ? $request->direction : 'asc';
+        $author = new Author;
         if ($request->has('search')) {
-            return Author::where('name', 'like', '%'.$request->search.'%')
-            ->orWhere('site', 'like', '%'.$request->search.'%')
-            ->paginate(intval($per_page));
+            $author = $author->where('name', 'like', '%'.$request->search.'%')
+            ->orWhere('site', 'like', '%'.$request->search.'%');
         }
 
-        return Author::paginate(intval($per_page));
+        $author = $author->orderBy($sort, $direction);
+
+        $result = $author->paginate(intval($per_page));
+        $result = array_add($result, 'sort', $sort);
+        $result = array_add($result, 'direction', $direction);
+
+        return $result;
     }
 
     /**
