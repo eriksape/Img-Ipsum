@@ -2,7 +2,8 @@ import Actions from 'redux-fetch-actions'
 import {
   authors_SET_SEARCH,
   authors_SET_PER_PAGE,
-  authors_SET_CURRENT_PAGE
+  authors_SET_CURRENT_PAGE,
+  authors_SET_SORT
 } from './constants'
 //import authorization from './../../lib/authorization'
 const authorization = () => false
@@ -45,4 +46,12 @@ export const setPerPage = per_page => ({
 export const setCurrentPage = current_page => ({
   type:authors_SET_CURRENT_PAGE,
   payload:current_page
+})
+
+export const setSort = (sort, direction) =>({
+  type:authors_SET_SORT,
+  payload:{
+    sort,
+    direction
+  }
 })

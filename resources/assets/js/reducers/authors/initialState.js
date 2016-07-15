@@ -13,6 +13,8 @@ var InitialState = Record({
   form:Map({}),
   isFetching:false,
   search:''
+  sort:'',
+  directoon:'asc'
 })
 
 export default InitialState
