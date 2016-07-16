@@ -25,11 +25,9 @@ class AuthorController extends Controller
 
         $author = $author->orderBy($sort, $direction);
 
-        $result = $author->paginate(intval($per_page));
-        $result = array_add($result, 'sort', $sort);
-        $result = array_add($result, 'direction', $direction);
+        $author = $author->paginate(intval($per_page))->toArray();
 
-        return $result;
+        return array_add(array_add($author, 'sort', $sort), 'direction', $direction);
     }
 
     /**

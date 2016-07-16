@@ -1,4 +1,4 @@
-import {update} from 'react-intl-redux'
+import {updateIntl} from 'react-intl-redux'
 
 const locales = {
   en: () => require('react-intl?locale=en!./language/en.json'),
@@ -13,5 +13,5 @@ const loadLocaleData = locale =>
 export const loadLocale = locale =>
   dispatch =>
     loadLocaleData(locale).then( messages => {
-      dispatch(update({locale, messages}))
+      dispatch(updateIntl({locale, messages}))
     }  )

@@ -6,13 +6,14 @@ import { concat, reduce } from 'lodash'
 import { List } from 'immutable'
 
 const renderInput = props =>{
+  const { input } = props
   if(props.error){
     console.log(props.Label,props.error)
   }
   return(
     <div className={classnames('field', {'error':props.error})}>
-      <label>{props.label}</label>
-      <input type="text" {...props} />
+      <label>{input.label}</label>
+      <input type="text" {...input}  />
     </div>
   )
 }

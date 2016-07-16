@@ -7,13 +7,13 @@ import {
   IndexRoute
 } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { Provider } from 'react-intl-redux'
-import {addLocaleData, FormattedMessage} from 'react-intl'
+import { Provider, intlReducer } from 'react-intl-redux'
+import { addLocaleData, FormattedMessage } from 'react-intl'
 import esLocaleData from 'react-intl/locale-data/es'
 import enLocaleData from 'react-intl/locale-data/en'
 
 import configureStore from './store/configureStore'
-import {loadLocale} from './reducers/intl/intlActions'
+import {loadLocale} from './reducers/intl/actions'
 import authorActions from './reducers/authors/actions'
 
 import App from './modules/app/components/App.jsx'
@@ -45,16 +45,16 @@ store.dispatch(authorActions.index());
 require('./../semantic/semantic.less');
 render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/app" component={Package}>
-        <IndexRoute component={App}></IndexRoute>
-        <Route path="/app/authors" component={TableAuthors}></Route>
-        <Route path="/app/authors/edit/:id" component={FormAuthors} new={false}></Route>
-        <Route path="/app/authors/new" component={FormAuthors} new={true}></Route>
-        <Route path="/app/categories"></Route>
-        <Route path="/app/images"></Route>
-      </Route>
-    </Router>
+      <Router history={history}>
+        <Route path="/app" component={Package}>
+          <IndexRoute component={App}></IndexRoute>
+          <Route path="/app/authors" component={TableAuthors}></Route>
+          <Route path="/app/authors/edit/:id" component={FormAuthors} new={false}></Route>
+          <Route path="/app/authors/new" component={FormAuthors} new={true}></Route>
+          <Route path="/app/categories"></Route>
+          <Route path="/app/images"></Route>
+        </Route>
+      </Router>
   </Provider>,
   document.getElementById('application')
 )
