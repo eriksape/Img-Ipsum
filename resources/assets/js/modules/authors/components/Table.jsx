@@ -48,7 +48,6 @@ export default class AuthorTable extends Component{
         <Table
           className='selectable'
           data={model.get('data').toJSON()}
-          onSelectRow={this.handleSelectRow}
           sort={model.getSorting()}
           onSortChange={changeSort}
         >

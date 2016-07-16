@@ -1,12 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { pick } from 'lodash'
-import authorActions, {
-  setSearch,
-  setPerPage,
-  setCurrentPage,
-  setSort
-} from './../../../reducers/authors/actions'
+import authorActions, { setSearch } from './../../../reducers/authors/actions'
 import Table from './../components/Table.jsx'
 import TableLoad from './../../ui/components/TableLoad.jsx'
 

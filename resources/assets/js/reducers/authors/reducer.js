@@ -2,12 +2,7 @@ import { SubmissionError } from 'redux-form';
 import { isUndefined } from 'lodash'
 import raspberry from './actions'
 
-import {
-  authors_SET_SEARCH,
-  authors_SET_PER_PAGE,
-  authors_SET_CURRENT_PAGE,
-  authors_SET_SORT
-} from './constants'
+import { authors_SET_SEARCH } from './constants'
 import InitialState from './initialState'
 
 const initialState = new InitialState
@@ -51,15 +46,6 @@ export default (state = initialState, action)=>{
       break
     case authors_SET_SEARCH:
       return state.merge({search:payload})
-      break
-    case authors_SET_PER_PAGE:
-      return state.merge({per_page:payload})
-      break
-    case authors_SET_CURRENT_PAGE:
-      return state.merge({current_page:payload})
-      break
-    case authors_SET_SORT:
-      return state.merge(action.payload)
       break
     case fail.index:
     case fail.store:
