@@ -4,7 +4,7 @@ import { intlReducer as intl } from 'react-intl-redux'
 import { routerReducer } from 'react-router-redux'
 
 import authors from './authors/reducer'
-import category from './categories/categoryReducer'
+import category from './categories/reducer'
 
 const rootReducer = combineReducers({
   form,

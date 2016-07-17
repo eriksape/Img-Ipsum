@@ -9,7 +9,6 @@ const initialState = new InitialState
 
 const { success, fail } = raspberry.constants
 
-
 export default (state = initialState, action)=>{
   const { type, promise, payload } = action
   let index = -1;
