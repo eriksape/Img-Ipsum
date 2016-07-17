@@ -14,7 +14,7 @@ export default React.createClass({
       )
     }
     return (
-      <div className="ui segment">
+      <div className="ui segment" style={{padding:0,border:0}}>
         <div className="ui active inverted dimmer">
           <div className="ui small text loader">Cargando</div>
         </div>
