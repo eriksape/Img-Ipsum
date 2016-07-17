@@ -1,6 +1,7 @@
 import Actions from 'redux-fetch-actions'
 //import authorization from './../../lib/authorization'
-const authorization = false
+import { categories_SET_SEARCH } from './constants'
+const authorization = () => false
 const uri = '/category'
 const server = ''
 const options = {
@@ -17,6 +18,7 @@ const action = new Actions(
   server,
   {
     index:{uri:uri, method:'get'},
+    show:{uri:uri+'/:id', method:'get'},
     store:{uri:uri, method:'post'},
     update:{uri:uri+'/:id', method:'put'},
     destroy:{uri:uri+'/:id', method:'delete'},
