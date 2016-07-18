@@ -1,7 +1,9 @@
 import { isUndefined } from 'lodash'
 import actions from './actions'
 import { categories_SET_SEARCH } from './constants'
-import initialState from './initialState'
+import InitialState from './initialState'
+
+const initialState = new InitialState
 
 const { success, fail } = actions.constants
 
