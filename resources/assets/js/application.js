@@ -17,6 +17,7 @@ import {loadLocale} from './reducers/intl/actions'
 import authorActions from './reducers/authors/actions'
 
 import App from './modules/app/components/App.jsx'
+import Homepage from './modules/homepage/containers/Homepage.jsx'
 import Package from './modules/app/components/Package.jsx'
 import TableAuthors from './modules/authors/containers/Table.jsx'
 import FormAuthors from './modules/authors/containers/Form.jsx'
@@ -43,9 +44,11 @@ store.dispatch(authorActions.index());
 //const history = syncHistoryWithStore(browserHistory, store)
 
 require('./../semantic/semantic.less');
+require('./../css/homepage.css');
 render(
   <Provider store={store}>
       <Router history={history}>
+        <Route path="/" component={Homepage}></Route>
         <Route path="/app" component={Package}>
           <IndexRoute component={App}></IndexRoute>
           <Route path="/app/authors" component={TableAuthors}></Route>
