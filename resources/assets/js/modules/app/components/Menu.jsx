@@ -17,6 +17,9 @@ export default class MenuApp extends Component{
           <FormattedMessage id="title.images" />
         </NavLink>
         <div className="right menu">
+          <NavLink to="/" className="item">
+            Homepage
+          </NavLink>
         </div>
       </Menu>
     )

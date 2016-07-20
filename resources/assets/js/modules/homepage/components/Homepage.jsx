@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import NavLink from './../../ui/components/NavLink.jsx'
 
 class Homepage extends Component {
   render(){
@@ -45,6 +46,7 @@ class Homepage extends Component {
               <div className="right item">
                 <a className="ui inverted button">Log in</a>
                 <a className="ui inverted button">Sign Up</a>
+                <NavLink to="/app" className="ui inverted button">Manage</NavLink>
               </div>
             </div>
           </div>
