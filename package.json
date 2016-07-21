@@ -3,7 +3,7 @@
   "scripts": {
     "test": "mocha resources/assets/js/tests/**.js --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
-    "semantic":"cp -r node_modules/semantic-ui-less/_site resources/assets/semantic/site & cp -r node_modules/semantic-ui-less/themes resources/assets/semantic/themes & cp -r node_modules/semantic-ui-less/definitions resources/assets/semantic/definitions & cp node_modules/semantic-ui-less/theme.less resources/assets/semantic/theme.less & cp node_modules/semantic-ui-less/semantic.less resources/assets/semantic/semantic.less & cp node_modules/semantic-ui-less/theme.config.example resources/assets/semantic/theme.config"
+    "semantic": "cp -r node_modules/semantic-ui-less/_site resources/assets/semantic/site & cp -r node_modules/semantic-ui-less/themes resources/assets/semantic/themes & cp -r node_modules/semantic-ui-less/definitions resources/assets/semantic/definitions & cp node_modules/semantic-ui-less/theme.less resources/assets/semantic/theme.less & cp node_modules/semantic-ui-less/semantic.less resources/assets/semantic/semantic.less & cp node_modules/semantic-ui-less/theme.config.example resources/assets/semantic/theme.config"
   },
   "browser": {
     "lodash": "./resources/assets/js/lib/lodash/index.js"
@@ -23,6 +23,7 @@
     "expect": "^1.20.2",
     "file-loader": "^0.9.0",
     "gulp": "^3.8.8",
+    "image-webpack-loader": "^2.0.0",
     "jest-cli": "^13.2.3",
     "jsdom": "^9.4.1",
     "json-loader": "^0.5.4",

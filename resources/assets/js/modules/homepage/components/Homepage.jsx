@@ -71,7 +71,8 @@ class Homepage extends Component {
                 <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
               </div>
               <div className="six wide right floated column">
-                <img src="assets/images/wireframe/white-image.png" className="ui large bordered rounded image" />
+              
+                <img src={require('./../white-image.png')} className="ui large bordered rounded image" />
               </div>
             </div>
             <div className="row">
@@ -93,7 +94,7 @@ class Homepage extends Component {
               <div className="column">
                 <h3>"I shouldn't have gone with their competitor."</h3>
                 <p>
-                  <img src="assets/images/avatar/nan.jpg" className="ui avatar image"/> <b>Nan</b> Chief Fun Officer Acme Toys
+                  <img src={require('./../nan.jpg')} className="ui avatar image"/> <b>Nan</b> Chief Fun Officer Acme Toys
                 </p>
               </div>
             </div>
