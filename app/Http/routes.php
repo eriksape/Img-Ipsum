@@ -19,8 +19,8 @@ Route::get('/app/{all?}', function () {
     return view('welcome');
 })->where('all', '.*');
 
-Route::get('/generate', 'CustomImageCacheController@generate');
-get('/{width}/{height}/{category?}/{id?}', 'CustomImageCacheController@show');
+//get('/{width}/{height}/{category?}/{id?}', 'CustomImageCacheController@show');
+get('/{width}/{height}', 'CustomImageCacheController@prueba');
 
 get('/token', function (Request $request) {
   return response(csrf_token());
@@ -28,22 +28,19 @@ get('/token', function (Request $request) {
 
 get('/token/new', function (Request $request) {
   Session::regenerateToken();
+
   return [csrf_token(), $request->cookie('XSRF-TOKEN')];
 });
 
-get('/generate', 'CustomImageCacheController@generate');
-
-get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
-
 Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
 Route::group(['middleware' => 'json'], function () {
-    resource('author', 'AuthorController', ['except'=>['create', 'show', 'edit']]);
-    resource('category', 'CategoryController', ['except'=>['create', 'show', 'edit']]);
+    resource('author', 'AuthorController', ['except' => ['create', 'edit']]);
+    resource('category', 'CategoryController', ['except' => ['create', 'show', 'edit']]);
 
-    Route::group(['prefix' => 'files', 'as'=>'files.'], function () {
-        post('{validation}', ['as'=>'store', 'uses'=>'FileStorageController@store'])->where('validation', '(image|pdf)?');
-        delete('{file}', ['as'=>'destroy', 'uses'=>'FileStorageController@destroy']);
+    Route::group(['prefix' => 'files', 'as' => 'files.'], function () {
+        post('{validation}', ['as' => 'store', 'uses' => 'FileStorageController@store'])->where('validation', '(image|pdf)?');
+        delete('{file}', ['as' => 'destroy', 'uses' => 'FileStorageController@destroy']);
     });
 
-    resource('bank', 'ImageBankController', ['except'=>['create', 'show', 'edit']]);
+    resource('bank', 'ImageBankController', ['except' => ['create', 'show', 'edit']]);
 });
