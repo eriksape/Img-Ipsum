@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest as Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -14,10 +12,22 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //return response()->json([\DB::connection()->getDatabaseName()],500);
-        return Category::all();
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
+        $sort = $request->has('sort') ? $request->sort : 'name';
+        $direction = $request->has('direction') ? $request->direction : 'asc';
+        $category = new Category;
+        if ($request->has('search')) {
+            $category = $category->where('name', 'like', '%'.$request->search.'%')
+            ->orWhere('site', 'like', '%'.$request->search.'%');
+        }
+
+        $category = $category->orderBy($sort, $direction);
+
+        $category = $category->paginate(intval($per_page))->toArray();
+
+        return array_add(array_add($category, 'sort', $sort), 'direction', $direction);
     }
 
     /**
@@ -30,7 +40,7 @@ class CategoryController extends Controller
     {
         $category = new Category($request->all());
 
-        if (!$category->save()) {
+        if (! $category->save()) {
             abort(500, 'category was not saved');
         }
 
@@ -47,7 +57,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        if (!$category) {
+        if (! $category) {
             abort(404, 'not category found');
         }
 
@@ -67,7 +77,7 @@ class CategoryController extends Controller
 
         $category->fill($request->all());
 
-        if (!$category->save()) {
+        if (! $category->save()) {
             abort(500, 'category was not updated');
         }
 
@@ -86,6 +96,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return null;
+        return;
     }
 }
