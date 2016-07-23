@@ -35,7 +35,7 @@ get('/token/new', function (Request $request) {
 Route::get('/generate/{width}/{height}/{category}', 'CustomImageCacheController@prueba');
 Route::group(['middleware' => 'json'], function () {
     resource('author', 'AuthorController', ['except' => ['create', 'edit']]);
-    resource('category', 'CategoryController', ['except' => ['create', 'show', 'edit']]);
+    resource('category', 'CategoryController', ['except' => ['create', 'edit']]);
 
     Route::group(['prefix' => 'files', 'as' => 'files.'], function () {
         post('{validation}', ['as' => 'store', 'uses' => 'FileStorageController@store'])->where('validation', '(image|pdf)?');

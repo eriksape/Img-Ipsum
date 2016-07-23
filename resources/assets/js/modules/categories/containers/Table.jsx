@@ -7,7 +7,7 @@ import TableLoad from './../../ui/components/TableLoad.jsx'
 
 let timeout = null
 
-const Authors = React.createClass({
+const Container = React.createClass({
   updateTable(changed){
     const { dispatch, categories } = this.props
     const data = categories.merge(changed)
@@ -61,4 +61,4 @@ const Authors = React.createClass({
   }
 })
 
-export default connect( state => pick(state, 'categories') )(Authors)
+export default connect( state => pick(state, 'categories') )(Container)
