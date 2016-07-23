@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { pick } from 'lodash'
-import actions, { setSearch } from './../../../reducers/authors/actions'
+import actions, { setSearch } from './../../../reducers/categories/actions'
 import Table from './../components/Table.jsx'
 import TableLoad from './../../ui/components/TableLoad.jsx'
 
@@ -9,8 +9,8 @@ let timeout = null
 
 const Authors = React.createClass({
   updateTable(changed){
-    const { dispatch, authors } = this.props
-    const data = authors.merge(changed)
+    const { dispatch, categories } = this.props
+    const data = categories.merge(changed)
     dispatch(actions.index({
       body:{
         page:data.get('current_page'),
@@ -38,20 +38,20 @@ const Authors = React.createClass({
     }).bind(this), 500)
   },
   changeSort(sort, direction){
-    const { authors } = this.props
-    if( authors.get('sort') == sort )
+    const { categories } = this.props
+    if( categories.get('sort') == sort )
       direction = direction=='ascending'?'asc':'desc'
     else direction = 'asc'
     this.updateTable({sort, direction})
   },
   render(){
-    const { authors } = this.props
-    if( authors.get('data').size < 1 )
+    const { categories } = this.props
+    if( categories.get('data').size < 1 )
       return <TableLoad />
 
     return(
       <Table
-        model={authors}
+        model={categories}
         changeCurrPage={this.changeCurrPage}
         changePerPage={this.changePerPage}
         changeSearch={this.changeSearch}
@@ -61,4 +61,4 @@ const Authors = React.createClass({
   }
 })
 
-export default connect( state => pick(state, 'authors') )(Authors)
+export default connect( state => pick(state, 'categories') )(Authors)

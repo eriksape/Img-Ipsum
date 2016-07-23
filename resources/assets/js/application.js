@@ -15,12 +15,16 @@ import enLocaleData from 'react-intl/locale-data/en'
 import configureStore from './store/configureStore'
 import {loadLocale} from './reducers/intl/actions'
 import authorActions from './reducers/authors/actions'
+import categoryActions from './reducers/categories/actions'
 
 import App from './modules/app/components/App.jsx'
 import Homepage from './modules/homepage/containers/Homepage.jsx'
 import Package from './modules/app/components/Package.jsx'
+
 import TableAuthors from './modules/authors/containers/Table.jsx'
 import FormAuthors from './modules/authors/containers/Form.jsx'
+
+import TableCategories from './modules/categories/containers/Table.jsx'
 
 addLocaleData([
   ...esLocaleData,
@@ -40,6 +44,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 store.dispatch(loadLocale('es'))
 store.dispatch(authorActions.index());
+store.dispatch(categoryActions.index());
 
 //const history = syncHistoryWithStore(browserHistory, store)
 
@@ -54,7 +59,7 @@ render(
           <Route path="/app/authors" component={TableAuthors}></Route>
           <Route path="/app/authors/edit/:id" component={FormAuthors} new={false}></Route>
           <Route path="/app/authors/new" component={FormAuthors} new={true}></Route>
-          <Route path="/app/categories"></Route>
+          <Route path="/app/categories" component={TableCategories}></Route>
           <Route path="/app/images"></Route>
         </Route>
       </Router>
