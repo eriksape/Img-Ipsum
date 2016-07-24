@@ -25,6 +25,7 @@ import TableAuthors from './modules/authors/containers/Table.jsx'
 import FormAuthors from './modules/authors/containers/Form.jsx'
 
 import TableCategories from './modules/categories/containers/Table.jsx'
+import FormCategories from './modules/categories/containers/Form.jsx'
 
 addLocaleData([
   ...esLocaleData,
@@ -60,6 +61,8 @@ render(
           <Route path="/app/authors/edit/:id" component={FormAuthors} new={false}></Route>
           <Route path="/app/authors/new" component={FormAuthors} new={true}></Route>
           <Route path="/app/categories" component={TableCategories}></Route>
+          <Route path="/app/categories/edit/:id" component={FormCategories} new={false}></Route>
+          <Route path="/app/categories/new" component={FormCategories} new={true}></Route>
           <Route path="/app/images"></Route>
         </Route>
       </Router>

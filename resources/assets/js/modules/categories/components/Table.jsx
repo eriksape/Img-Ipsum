@@ -7,7 +7,7 @@ import DataTable from  './../../ui/components/DataTable.jsx'
 
 export default class AuthorTable extends Component{
   options(data){
-    const edit = '/app/authors/edit/'+data.id
+    const edit = '/app/categories/edit/'+data.id
     return(
       <div className="mini ui compact basic icon buttons">
         <Link to={edit} className="mini ui compact button">
@@ -29,7 +29,7 @@ export default class AuthorTable extends Component{
 
     <div className="ui segment">
       <h3 className="ui left floated header">Autores</h3>
-      <Link to={'/app/authors/new'} className="tiny ui right floated compact button">
+      <Link to={'/app/categories/new'} className="tiny ui right floated compact button">
         <i className="add circle icon" ></i>
         Nuevo
       </Link>

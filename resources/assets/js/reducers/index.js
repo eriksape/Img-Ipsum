@@ -4,14 +4,14 @@ import { intlReducer as intl } from 'react-intl-redux'
 import { routerReducer } from 'react-router-redux'
 
 import authors from './authors/reducer'
-import category from './categories/reducer'
+import categories from './categories/reducer'
 
 const rootReducer = combineReducers({
   form,
   intl,
   routing: routerReducer,
   authors,
-  category
+  categories
 });
 
 export default rootReducer

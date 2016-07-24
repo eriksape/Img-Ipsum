@@ -25,10 +25,21 @@ export default (state = initialState, action)=>{
       if(index >= 0) return state.mergeIn(['data', index], payload.value)
       return state
       break
-      case 'isFetching':
-        return state.merge({
-          isFetching:true
-        })
+    case success.show:
+    case 'categories_SET_FORM':
+      return state.merge({
+        form:payload.value
+      })
+      break
+    case 'categories_UNSET_FORM':
+      return state.merge({
+        form:{}
+      })
+      break
+    case 'isFetching':
+      return state.merge({
+        isFetching:true
+      })
       break
     case fail.index:
     case fail.store:
