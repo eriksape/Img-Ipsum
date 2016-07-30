@@ -10,7 +10,6 @@ const { success, fail } = actions.constants
 export default (state = initialState, action)=>{
   const { type, promise, payload } = action
   let index = -1;
-  state = state.merge({isFetching:false})
   switch (action.type) {
     case success.index:
       return state.merge(payload.value)
@@ -34,11 +33,6 @@ export default (state = initialState, action)=>{
     case 'categories_UNSET_FORM':
       return state.merge({
         form:{}
-      })
-      break
-    case 'isFetching':
-      return state.merge({
-        isFetching:true
       })
       break
     case fail.index:

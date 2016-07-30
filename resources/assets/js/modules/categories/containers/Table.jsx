@@ -45,12 +45,13 @@ const Container = React.createClass({
     this.updateTable({sort, direction})
   },
   render(){
-    const { categories } = this.props
+    const { categories, isFetching } = this.props
     if( categories.get('data').size < 1 )
       return <TableLoad />
 
     return(
       <Table
+        isFetching={isFetching}
         model={categories}
         changeCurrPage={this.changeCurrPage}
         changePerPage={this.changePerPage}
@@ -61,4 +62,4 @@ const Container = React.createClass({
   }
 })
 
-export default connect( state => pick(state, 'categories') )(Container)
+export default connect( state => pick(state, 'categories', 'isFetching') )(Container)

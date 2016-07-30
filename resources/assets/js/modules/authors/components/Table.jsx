@@ -24,6 +24,7 @@ export default class AuthorTable extends Component{
       changeSearch,
       changeSort,
       model,
+      isFetching,
     } = this.props
     return(
 
@@ -40,7 +41,7 @@ export default class AuthorTable extends Component{
         currPage={model.get('current_page')}
         lastPage={model.get('last_page')}
         perPage={model.get('per_page')}
-        isFetching={model.get('isFetching')}
+        isFetching={isFetching}
         changeCurrPage={changeCurrPage}
         changePerPage={changePerPage}
         changeSearch={changeSearch}
